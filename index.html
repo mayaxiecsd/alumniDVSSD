@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alumni Portal — Dept. of Vocational Studies & Skill Development, Manipur University</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══════════════════════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <div class="brand-emblem">
+        <svg width="36" height="36" viewBox="0 0 36 36">
+          <circle cx="18" cy="18" r="17" fill="none" stroke="var(--gold)" stroke-width="1.5"/>
+          <circle cx="18" cy="18" r="10" fill="none" stroke="var(--gold)" stroke-width="1"/>
+          <line x1="18" y1="1" x2="18" y2="35" stroke="var(--gold)" stroke-width="1"/>
+          <line x1="1" y1="18" x2="35" y2="18" stroke="var(--gold)" stroke-width="1"/>
+          <circle cx="18" cy="18" r="3" fill="var(--gold)"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-dept">Vocational Studies & Skill Development</span>
+        <span class="brand-uni">Manipur University</span>
+      </div>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a class="nav-a" href="#" onclick="showPage('home')">Home</a>
+      <a class="nav-a" href="#" onclick="showPage('directory')" id="nav-dir" style="display:none">Directory</a>
+      <a class="nav-a" href="#" onclick="showPage('register')" id="nav-reg">Register</a>
+      <a class="nav-a" href="#" onclick="showPage('login')" id="nav-login">Login</a>
+      <a class="nav-a nav-logout" href="#" onclick="logout()" id="nav-logout" style="display:none">Logout</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<!-- ═══ PAGES ════════════════════════════════════════════════════════════════ -->
+
+<!-- HOME ─────────────────────────────────────────────────────────────────── -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Alumni Portal</div>
+      <h1 class="hero-title">
+        Staying Connected,<br/><em>Growing Together</em>
+      </h1>
+      <p class="hero-sub">
+        The official alumni network of the Department of Vocational Studies &amp; Skill Development, Manipur University — connecting graduates across generations.
+      </p>
+      <div class="hero-cta">
+        <button class="btn-gold" onclick="showPage('register')">Join the Network</button>
+        <button class="btn-outline" onclick="showPage('login')">Sign In</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="h-stat"><span class="h-stat-num" id="hs-alumni">—</span><span class="h-stat-label">Alumni Registered</span></div>
+      <div class="h-stat-div"></div>
+      <div class="h-stat"><span class="h-stat-num">2004</span><span class="h-stat-label">Est. Department</span></div>
+      <div class="h-stat-div"></div>
+      <div class="h-stat"><span class="h-stat-num">20+</span><span class="h-stat-label">Years of Excellence</span></div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="section-head">
+      <div class="section-tag">What We Offer</div>
+      <h2>A Portal Built for <em>Our Alumni</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">◈</div>
+        <h3>Alumni Directory</h3>
+        <p>Browse and connect with fellow graduates. Filter by batch year, program, and location.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">◉</div>
+        <h3>Profile Management</h3>
+        <p>Keep your professional profile updated — career, achievements, and contact details.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">◎</div>
+        <h3>Secure & Private</h3>
+        <p>Your data is encrypted and protected. Only verified alumni can view the directory.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">◐</div>
+        <h3>Stay Connected</h3>
+        <p>Link your LinkedIn profile and keep the alumni family growing stronger every year.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- REGISTER ─────────────────────────────────────────────────────────────── -->
+<div class="page" id="page-register">
+  <div class="form-page">
+    <div class="form-header">
+      <div class="section-tag">Join Us</div>
+      <h2>Alumni Registration</h2>
+      <p>Create your alumni profile for the Department of Vocational Studies &amp; Skill Development</p>
+    </div>
+
+    <form class="reg-form" onsubmit="submitRegister(event)" id="reg-form">
+      <div class="form-section-title">Personal Information</div>
+      <div class="form-grid">
+        <div class="fg">
+          <label>Full Name *</label>
+          <input type="text" id="r-name" placeholder="Your full name" required/>
+        </div>
+        <div class="fg">
+          <label>Email Address *</label>
+          <input type="email" id="r-email" placeholder="your@email.com" required/>
+        </div>
+        <div class="fg">
+          <label>Password *</label>
+          <input type="password" id="r-pw" placeholder="Min 8 chars, 1 uppercase, 1 number" required/>
+        </div>
+        <div class="fg">
+          <label>Confirm Password *</label>
+          <input type="password" id="r-pw2" placeholder="Re-enter password" required/>
+        </div>
+        <div class="fg">
+          <label>Phone Number</label>
+          <input type="tel" id="r-phone" placeholder="+91 XXXXXXXXXX"/>
+        </div>
+        <div class="fg">
+          <label>WhatsApp Number</label>
+          <input type="tel" id="r-whatsapp" placeholder="+91 XXXXXXXXXX"/>
+        </div>
+      </div>
+
+      <div class="form-section-title">Academic Details</div>
+      <div class="form-grid">
+        <div class="fg">
+          <label>Roll Number</label>
+          <input type="text" id="r-roll" placeholder="e.g. MU2018VS001"/>
+        </div>
+        <div class="fg">
+          <label>Batch Year (Admission)</label>
+          <input type="number" id="r-batch" placeholder="e.g. 2018" min="2000" max="2030"/>
+        </div>
+        <div class="fg">
+          <label>Graduation Year</label>
+          <input type="number" id="r-grad" placeholder="e.g. 2021" min="2000" max="2030"/>
+        </div>
+        <div class="fg">
+          <label>Program</label>
+          <select id="r-program">
+            <option value="">Select Program</option>
+            <option>B.Voc (Retail Management)</option>
+            <option>B.Voc (Healthcare)</option>
+            <option>B.Voc (IT & Software)</option>
+            <option>B.Voc (Tourism & Hospitality)</option>
+            <option>B.Voc (Beauty & Wellness)</option>
+            <option>B.Voc (Automobile Technology)</option>
+            <option>M.Voc</option>
+            <option>PG Diploma in Skill Development</option>
+            <option>Certificate Course</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg fg-full">
+          <label>Specialization / Stream</label>
+          <input type="text" id="r-spec" placeholder="e.g. Retail Operations, Clinical Care…"/>
+        </div>
+      </div>
+
+      <div class="form-section-title">Professional Details</div>
+      <div class="form-grid">
+        <div class="fg">
+          <label>Current Job Title</label>
+          <input type="text" id="r-job" placeholder="e.g. Store Manager"/>
+        </div>
+        <div class="fg">
+          <label>Employer / Organization</label>
+          <input type="text" id="r-employer" placeholder="Company or organization name"/>
+        </div>
+        <div class="fg">
+          <label>Industry</label>
+          <select id="r-industry">
+            <option value="">Select Industry</option>
+            <option>Retail & E-Commerce</option>
+            <option>Healthcare & Pharma</option>
+            <option>Information Technology</option>
+            <option>Tourism & Hospitality</option>
+            <option>Beauty & Wellness</option>
+            <option>Automotive</option>
+            <option>Education & Training</option>
+            <option>Government / Public Sector</option>
+            <option>Banking & Finance</option>
+            <option>Self-Employed / Entrepreneur</option>
+            <option>NGO / Non-Profit</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Current City</label>
+          <input type="text" id="r-city" placeholder="City"/>
+        </div>
+        <div class="fg">
+          <label>State</label>
+          <input type="text" id="r-state" placeholder="State"/>
+        </div>
+        <div class="fg">
+          <label>LinkedIn Profile URL</label>
+          <input type="url" id="r-linkedin" placeholder="https://linkedin.com/in/…"/>
+        </div>
+        <div class="fg fg-full">
+          <label>Short Bio</label>
+          <textarea id="r-bio" rows="3" placeholder="Tell us about yourself, your journey after graduating…"></textarea>
+        </div>
+        <div class="fg fg-full">
+          <label>Notable Achievements</label>
+          <textarea id="r-achiev" rows="2" placeholder="Awards, certifications, milestones…"></textarea>
+        </div>
+      </div>
+
+      <div class="form-error" id="reg-error"></div>
+      <div class="form-success" id="reg-success"></div>
+      <button type="submit" class="btn-gold btn-full" id="reg-btn">
+        <span>Register</span>
+      </button>
+      <p class="form-alt">Already registered? <a href="#" onclick="showPage('login')">Sign in →</a></p>
+    </form>
+  </div>
+</div>
+
+<!-- LOGIN ────────────────────────────────────────────────────────────────── -->
+<div class="page" id="page-login">
+  <div class="form-page form-page-sm">
+    <div class="form-header">
+      <div class="section-tag">Welcome Back</div>
+      <h2>Sign In</h2>
+      <p>Access your alumni profile and the directory</p>
+    </div>
+    <form onsubmit="submitLogin(event)">
+      <div class="fg">
+        <label>Email Address</label>
+        <input type="email" id="l-email" placeholder="your@email.com" required/>
+      </div>
+      <div class="fg" style="margin-top:14px">
+        <label>Password</label>
+        <input type="password" id="l-pw" placeholder="Your password" required/>
+      </div>
+      <div class="form-error" id="login-error"></div>
+      <button type="submit" class="btn-gold btn-full" style="margin-top:20px" id="login-btn">Sign In</button>
+      <p class="form-alt">New alumni? <a href="#" onclick="showPage('register')">Register here →</a></p>
+    </form>
+  </div>
+</div>
+
+<!-- PROFILE (logged-in alumni) ───────────────────────────────────────────── -->
+<div class="page" id="page-profile">
+  <div class="profile-page">
+    <div class="profile-banner">
+      <div class="profile-avatar" id="p-avatar">?</div>
+      <div class="profile-banner-text">
+        <h2 id="p-name">—</h2>
+        <div id="p-program-batch" style="color:var(--gold);font-family:var(--mono)">—</div>
+        <div id="p-job-employer" style="color:var(--muted);font-size:0.9rem;margin-top:4px">—</div>
+      </div>
+      <button class="btn-outline btn-sm" onclick="showEditMode(true)" id="edit-toggle">✎ Edit Profile</button>
+    </div>
+
+    <!-- VIEW mode -->
+    <div id="profile-view">
+      <div class="profile-grid">
+        <div class="profile-section">
+          <div class="ps-title">Academic</div>
+          <div class="ps-row"><span>Roll Number</span><span id="pv-roll">—</span></div>
+          <div class="ps-row"><span>Batch Year</span><span id="pv-batch">—</span></div>
+          <div class="ps-row"><span>Graduation Year</span><span id="pv-grad">—</span></div>
+          <div class="ps-row"><span>Program</span><span id="pv-program">—</span></div>
+          <div class="ps-row"><span>Specialization</span><span id="pv-spec">—</span></div>
+        </div>
+        <div class="profile-section">
+          <div class="ps-title">Professional</div>
+          <div class="ps-row"><span>Current Role</span><span id="pv-job">—</span></div>
+          <div class="ps-row"><span>Employer</span><span id="pv-employer">—</span></div>
+          <div class="ps-row"><span>Industry</span><span id="pv-industry">—</span></div>
+          <div class="ps-row"><span>Location</span><span id="pv-location">—</span></div>
+          <div class="ps-row"><span>LinkedIn</span><span id="pv-linkedin">—</span></div>
+        </div>
+        <div class="profile-section">
+          <div class="ps-title">Contact</div>
+          <div class="ps-row"><span>Email</span><span id="pv-email">—</span></div>
+          <div class="ps-row"><span>Phone</span><span id="pv-phone">—</span></div>
+          <div class="ps-row"><span>WhatsApp</span><span id="pv-whatsapp">—</span></div>
+        </div>
+        <div class="profile-section profile-section-full">
+          <div class="ps-title">About</div>
+          <p id="pv-bio" style="color:var(--muted);line-height:1.7;white-space:pre-wrap">—</p>
+        </div>
+        <div class="profile-section profile-section-full">
+          <div class="ps-title">Achievements</div>
+          <p id="pv-achiev" style="color:var(--muted);line-height:1.7;white-space:pre-wrap">—</p>
+        </div>
+      </div>
+
+      <!-- Change Password -->
+      <div class="pw-section">
+        <div class="ps-title">Change Password</div>
+        <div class="form-grid" style="max-width:600px">
+          <div class="fg">
+            <label>Current Password</label>
+            <input type="password" id="cp-old" placeholder="Current password"/>
+          </div>
+          <div class="fg">
+            <label>New Password</label>
+            <input type="password" id="cp-new" placeholder="New password"/>
+          </div>
+          <div class="fg">
+            <label>Confirm New Password</label>
+            <input type="password" id="cp-new2" placeholder="Confirm new password"/>
+          </div>
+        </div>
+        <div class="form-error" id="pw-error"></div>
+        <div class="form-success" id="pw-success"></div>
+        <button class="btn-outline" style="margin-top:12px" onclick="changePassword()">Update Password</button>
+      </div>
+    </div>
+
+    <!-- EDIT mode -->
+    <div id="profile-edit" style="display:none">
+      <form onsubmit="submitProfileUpdate(event)">
+        <div class="form-section-title">Personal Information</div>
+        <div class="form-grid">
+          <div class="fg"><label>Full Name</label><input type="text" id="e-name"/></div>
+          <div class="fg"><label>Phone</label><input type="text" id="e-phone"/></div>
+          <div class="fg"><label>WhatsApp</label><input type="text" id="e-whatsapp"/></div>
+        </div>
+        <div class="form-section-title">Academic</div>
+        <div class="form-grid">
+          <div class="fg"><label>Roll Number</label><input type="text" id="e-roll"/></div>
+          <div class="fg"><label>Batch Year</label><input type="number" id="e-batch" min="2000" max="2030"/></div>
+          <div class="fg"><label>Graduation Year</label><input type="number" id="e-grad" min="2000" max="2030"/></div>
+          <div class="fg"><label>Program</label>
+            <select id="e-program">
+              <option value="">Select Program</option>
+              <option>B.Voc (Retail Management)</option>
+              <option>B.Voc (Healthcare)</option>
+              <option>B.Voc (IT & Software)</option>
+              <option>B.Voc (Tourism & Hospitality)</option>
+              <option>B.Voc (Beauty & Wellness)</option>
+              <option>B.Voc (Automobile Technology)</option>
+              <option>M.Voc</option>
+              <option>PG Diploma in Skill Development</option>
+              <option>Certificate Course</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg fg-full"><label>Specialization</label><input type="text" id="e-spec"/></div>
+        </div>
+        <div class="form-section-title">Professional</div>
+        <div class="form-grid">
+          <div class="fg"><label>Current Job Title</label><input type="text" id="e-job"/></div>
+          <div class="fg"><label>Employer</label><input type="text" id="e-employer"/></div>
+          <div class="fg"><label>Industry</label>
+            <select id="e-industry">
+              <option value="">Select Industry</option>
+              <option>Retail & E-Commerce</option>
+              <option>Healthcare & Pharma</option>
+              <option>Information Technology</option>
+              <option>Tourism & Hospitality</option>
+              <option>Beauty & Wellness</option>
+              <option>Automotive</option>
+              <option>Education & Training</option>
+              <option>Government / Public Sector</option>
+              <option>Banking & Finance</option>
+              <option>Self-Employed / Entrepreneur</option>
+              <option>NGO / Non-Profit</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label>City</label><input type="text" id="e-city"/></div>
+          <div class="fg"><label>State</label><input type="text" id="e-state"/></div>
+          <div class="fg"><label>LinkedIn URL</label><input type="url" id="e-linkedin"/></div>
+          <div class="fg fg-full"><label>Bio</label><textarea id="e-bio" rows="3"></textarea></div>
+          <div class="fg fg-full"><label>Achievements</label><textarea id="e-achiev" rows="2"></textarea></div>
+        </div>
+        <div class="form-error" id="edit-error"></div>
+        <div class="form-success" id="edit-success"></div>
+        <div class="edit-actions">
+          <button type="submit" class="btn-gold">Save Changes</button>
+          <button type="button" class="btn-outline" onclick="showEditMode(false)">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- DIRECTORY ────────────────────────────────────────────────────────────── -->
+<div class="page" id="page-directory">
+  <div class="dir-page">
+    <div class="section-head">
+      <div class="section-tag">Our Network</div>
+      <h2>Alumni Directory</h2>
+    </div>
+    <div class="dir-filters">
+      <input type="text" class="dir-search" id="dir-q" placeholder="Search by name, job, employer…" oninput="searchDir()"/>
+      <select class="dir-select" id="dir-batch" onchange="searchDir()">
+        <option value="">All Batches</option>
+      </select>
+    </div>
+    <div class="alumni-grid" id="alumni-grid">
+      <div class="dir-loading">Loading…</div>
+    </div>
+    <div class="dir-pagination" id="dir-pagination"></div>
+  </div>
+</div>
+
+<!-- ADMIN ────────────────────────────────────────────────────────────────── -->
+<div class="page" id="page-admin">
+  <div class="admin-page">
+    <div class="section-head">
+      <div class="section-tag">Administration</div>
+      <h2>Admin Dashboard</h2>
+    </div>
+    <div class="admin-stats" id="admin-stats-row"></div>
+    <div class="admin-section">
+      <h3>Registered Alumni</h3>
+      <table class="admin-table" id="admin-table">
+        <thead>
+          <tr><th>Name</th><th>Email</th><th>Roll No.</th><th>Batch</th><th>Program</th><th>Verified</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="admin-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST ───────────────────────────────────────────────────────────────── -->
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER ──────────────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">◈</div>
+      <div>
+        <div style="font-weight:600;color:var(--gold)">Department of Vocational Studies & Skill Development</div>
+        <div style="font-size:0.82rem;color:var(--muted);margin-top:2px">Manipur University, Canchipur, Imphal — 795003</div>
+      </div>
+    </div>
+    <div style="font-size:0.78rem;color:var(--muted);text-align:center">
+      © 2025 Manipur University. All rights reserved.<br/>
+      <span style="font-family:var(--mono);font-size:0.72rem">Alumni data is securely stored and protected.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
